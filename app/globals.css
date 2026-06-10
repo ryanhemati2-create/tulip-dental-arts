@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --tulip-dark: #1a0026;
+    --tulip-primary: #8b0057;
+    --tulip-mid: #c2185b;
+    --tulip-accent: #e91e8c;
+    --tulip-light: #fdf0f5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* clears the fixed nav for anchor links */
+  }
+
+  body {
+    @apply font-body text-tulip-dark antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--tulip-accent);
+    color: #ffffff;
+  }
+
+  /* Branded scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--tulip-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--tulip-primary), var(--tulip-accent));
+    border-radius: 9999px;
+  }
+}
+
+@layer components {
+  /* Wide-tracked uppercase accent label used throughout the site */
+  .eyebrow {
+    @apply font-heading text-xs font-semibold uppercase tracking-label;
+  }
+
+  /* Animated brand gradient — the "breathing" hero background */
+  .tulip-animated-gradient {
+    background-image: linear-gradient(
+      135deg,
+      #1a0026 0%,
+      #5e0040 28%,
+      #8b0057 52%,
+      #c2185b 76%,
+      #e91e8c 100%
+    );
+    background-size: 220% 220%;
+    animation: gradient-shift 14s ease infinite;
+  }
+
+  /* Text that picks up the brand gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #c2185b, #e91e8c);
+  }
+
+  /* Buttons — each variant is self-contained (only @apply's Tailwind utilities) */
+  .btn-pill {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-wide transition-all duration-300;
+  }
+
+  .btn-fuchsia {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-wide transition-all duration-300;
+    @apply bg-tulip-accent text-white shadow-glow hover:-translate-y-0.5 hover:bg-tulip-mid hover:shadow-card-hover;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-wide transition-all duration-300;
+    @apply border-2 border-white/80 text-white hover:-translate-y-0.5 hover:bg-white hover:text-tulip-primary;
+  }
+
+  .btn-outline-magenta {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-wide transition-all duration-300;
+    @apply border-2 border-tulip-primary text-tulip-primary hover:-translate-y-0.5 hover:bg-tulip-primary hover:text-white;
+  }
+
+  .container-tulip {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  /* CSS-only falling petal used in the hero */
+  .petal {
+    position: absolute;
+    top: -5%;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0.9),
+      rgba(233, 30, 140, 0.35)
+    );
+    border-radius: 80% 0 80% 0;
+    opacity: 0;
+    animation: petal-fall linear infinite;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+}
+
+/*
+  Keyframes referenced directly from CSS above. They are declared here (rather
+  than relying on the Tailwind config) because Tailwind only emits config
+  keyframes when their matching `animate-*` utility class is actually used.
+*/
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .petal {
+    display: none;
+  }
+}
