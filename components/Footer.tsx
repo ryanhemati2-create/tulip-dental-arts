@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   MapPinIcon,
   PhoneIcon,
-  PrinterIcon,
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
@@ -107,10 +106,6 @@ export default function Footer() {
               <a href="tel:+16049449800" className="hover:text-white">
                 (604) 944-9800
               </a>
-            </li>
-            <li className="flex gap-3">
-              <PrinterIcon className="h-5 w-5 shrink-0 text-tulip-accent" />
-              <span>Fax: (604) 944-9800</span>
             </li>
             <li className="flex gap-3">
               <EnvelopeIcon className="h-5 w-5 shrink-0 text-tulip-accent" />

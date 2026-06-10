@@ -78,16 +78,11 @@ export default function ContactPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <ContactCard
                   icon={PhoneIcon}
-                  label="Phone & Fax"
+                  label="Phone"
                   value={
-                    <span>
-                      <a href="tel:+16049449800" className="hover:text-tulip-primary">
-                        (604) 944-9800
-                      </a>
-                      <span className="block text-sm font-normal text-tulip-dark/60">
-                        Fax: (604) 944-9800
-                      </span>
-                    </span>
+                    <a href="tel:+16049449800" className="hover:text-tulip-primary">
+                      (604) 944-9800
+                    </a>
                   }
                 />
                 <ContactCard

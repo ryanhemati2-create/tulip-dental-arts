@@ -17,6 +17,7 @@ import ServiceCard from "@/components/ServiceCard";
 import Reveal from "@/components/Reveal";
 import CTABanner from "@/components/CTABanner";
 import ScannerCompatibility from "@/components/ScannerCompatibility";
+import WarrantySection from "@/components/WarrantySection";
 
 export const metadata: Metadata = {
   title: "Services & Products",
@@ -172,6 +173,9 @@ export default function ServicesPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* PRODUCT WARRANTY */}
+      <WarrantySection />
 
       {/* DIGITAL SCANNER COMPATIBILITY */}
       <ScannerCompatibility surface="light" />
